@@ -1,6 +1,13 @@
-﻿using System;
+﻿using C__NET5.async_await;
+using C__NET5.keywords;
+using C__NET5.сsharpcorner_сom;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
+using static C__NET5.VirtualOverride;
 
 namespace C__NET5
 {
@@ -21,6 +28,8 @@ namespace C__NET5
         #region async await
         private static string str = "initial";
         static AsyncAwait asyncAwait = new AsyncAwait();
+        static Common common = new Common();
+        static Cast cast = new Cast();
 
         async static Task<string> Delay()
         {
@@ -53,7 +62,7 @@ namespace C__NET5
         
         static async Task Delay3NoAwait()
         {
-            Task.Delay(5000); // паузы не будет. следующая строка тут же сработает
+            Task.Delay(5000); // паузы не будет, т.к. нет await следующая строка тут же сработает
             str = "after sleep";
         }
 
@@ -64,7 +73,7 @@ namespace C__NET5
             return Task.CompletedTask;
         }
 
-        static async Task DelayAsyncInSignature()
+        static async Task Delay5()
         {
             await Task.Delay(5000); // паузы не будет
         }
@@ -127,6 +136,20 @@ namespace C__NET5
 
         static async Task Main(string[] args)
         {
+            var ref_ = new Ref();
+            #region
+            var foo = new Ref.Foo();
+            ref_.Bar(foo);
+            ref_.Bar2(foo);
+            ref_.Bar3(foo); // Name не меняется
+
+            foo = new Ref.Foo();
+            ref_.Bar(foo);
+            ref_.BarRef2(ref foo);
+            ref_.BarRef3(ref foo);
+            #endregion
+            ref_.Run();
+
             #region by reference
             var contact = new Contact();
             SetContact(contact);
@@ -140,7 +163,7 @@ namespace C__NET5
             //await ExecuteOperationTaskDelay();
             //await ExecuteOperationTaskDelayAsyncLambda();
             //var breakpoint = 0;
-            //DelayAsyncInSignature();
+            //Delay5();
             //DelayNoAsyncInSignature();
 
             //asyncAwait.AsyncVoidExceptions_CannotBeCaughtByCatch();
@@ -148,7 +171,7 @@ namespace C__NET5
             //AsyncAwait.f(); // неудачный пример
             //AsyncAwait.g();
 
-            //Delay3();
+            // Delay3();
             //await Delay3();
             //await Delay3_();
 
@@ -162,10 +185,61 @@ namespace C__NET5
             //Task.Run(() => Delay2());
             //var t = Task.Run(() => Delay2()); t.Wait();
             //await Task.Run(() => Delay2());
+            //await asyncAwait.Main1();
 
+            //AsyncAndAwaitInCSharp.Main1();
+
+            //Test t = new Test();
+            //try
+            //{
+            //    //t.Call();
+            //    t.Call();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+            var results = new List<int>();
+            for (int i = 0; i < 30; i++)
+            {
+                var result = ConcurrencyInCsharpCookBook.ParallelSum(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 }); // 15
+                results.Add(result);
+            }
+            //var resultsArr = results.ToArray().ToString();
             #endregion
 
-            //Console.WriteLine(str);
+            #region virtual
+            double r = 3.0, h = 5.0;
+            Shape c = new Circle(r);
+            Shape s = new Sphere(r);
+            Shape l = new Cylinder(r, h);
+            // Display results:
+            var a1 = c.Area();
+            var a2 = s.Area();
+            var a3 = l.Area();
+            #endregion
+
+            #region virtual override
+            var a1_vo = new A1();
+            var b1_vo = new B1();
+            var c1_vo = new C1();
+            #endregion
+
+            new Exceptions();
+
+            #region common
+            common.Run();
+            common.Run3();
+            #endregion
+
+            OOP.Main_();
+            Finalize_.Demo.Main1();
+            cast.Run();
+
+            Console.WriteLine("Hello World!");
+            Console.ReadLine();
+            //SafeHandle
         }
     }
 }

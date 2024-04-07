@@ -6,4 +6,12 @@
     <RootNamespace>C__NET5</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="личия\" />
+  </ItemGroup>
+
 </Project>
