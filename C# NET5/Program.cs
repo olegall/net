@@ -3,10 +3,12 @@ using C__NET5.keywords;
 using C__NET5.сsharpcorner_сom;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static C__NET5.VirtualOverride;
 
 namespace C__NET5
@@ -109,6 +111,10 @@ namespace C__NET5
             Console.WriteLine($"After: {Thread.CurrentThread.ManagedThreadId}");
         }
 
+        // отличия
+        async Task AsyncTask() { } // async - модификатор, означающий, что метод выполняется асинхронно; Task - возвращаемое значение
+        Task Task_() { return null; }
+
         static async Task ExecuteOperationTaskDelay()
         {
             Console.WriteLine($"Before: {Thread.CurrentThread.ManagedThreadId}"); // ManagedThreadId не меняется
@@ -133,9 +139,22 @@ namespace C__NET5
             Console.WriteLine($"After: {Thread.CurrentThread.ManagedThreadId}");
         }
         #endregion
-
-        static async Task Main(string[] args)
+        static void PrintName(string name)
         {
+            //Thread.Sleep(3000);     // имитация продолжительной работы
+            Console.WriteLine(name); // зависает
+        }
+
+        static void Main()
+        {
+            Console.WriteLine("name"); // зависает
+        }
+
+        // почему основной метод async Task?
+        // почему точка входа - статическая?
+        static async Task Main_(string[] args) 
+        {
+            PrintName("xxx");
             var ref_ = new Ref();
             #region
             var foo = new Ref.Foo();
@@ -147,6 +166,12 @@ namespace C__NET5
             ref_.Bar(foo);
             ref_.BarRef2(ref foo);
             ref_.BarRef3(ref foo);
+            #endregion
+            #region
+            var testRef = new[] { "0", "1" };
+            ref_.Swap(ref testRef[0], ref testRef[1]);
+            var test = new[] { "0", "1" };
+            ref_.Swap(test[0], test[1]); // не меняет
             #endregion
             ref_.Run();
 
@@ -185,7 +210,7 @@ namespace C__NET5
             //Task.Run(() => Delay2());
             //var t = Task.Run(() => Delay2()); t.Wait();
             //await Task.Run(() => Delay2());
-            //await asyncAwait.Main1();
+            await asyncAwait.Main1();
 
             //AsyncAndAwaitInCSharp.Main1();
 
@@ -237,6 +262,52 @@ namespace C__NET5
             Finalize_.Demo.Main1();
             cast.Run();
 
+            #region object
+            var foo1 = new Foo();
+            var foo2 = new Foo();
+            var foo2_ = new Foo2();
+
+            var hashCode = foo2.GetHashCode(); // при перезапуске проекта всегда такой же
+
+            var eq1 = Object.Equals(foo1, foo2); // false. когда вернёт true? TODO
+            foo1.X = 1;
+            foo2.X = 2;
+            foo1 = foo2;
+            // все методы сравнения Object - по ссылке. по значению - надо сравнивать по полям
+            var eq2 = Object.ReferenceEquals(foo1, foo2); // false
+            var eq3 = foo1.Equals(foo2); // false
+            var eq4 = foo1 == foo2; // false
+
+            //foo2 = foo2_; // нельзя
+            foo1 = foo2;
+
+            var eq5 = Equals(foo1, foo2); // без Object. true
+            var eq6 = Object.ReferenceEquals(foo1, foo2); // true
+            var eq7 = foo1.Equals(foo2); // true
+            var eq8 = foo1 == foo2;
+
+            var eq9 = Object.Equals(foo1, foo1); // true
+            var eq10 = Object.ReferenceEquals(foo1, foo1); // true
+            var eq11 = foo1.Equals(foo1); // true
+            var eq12 = foo1 == foo2; // true
+            #endregion
+
+            #region immutable class
+            var i0 = new object();
+            var i1 = new ImmutableClass(1);
+            var i2 = new ImmutableClass(1);
+            var i3 = new ImmutableClass(2);
+            var i1_true = i1.Equals(i2); // true
+            var i2_false = i1.Equals(i3); // false
+            var i3_true = i1.Equals(i1); // true
+            
+            var i4_false = ReferenceEquals(i1, i2); // false
+            var i5_false = ReferenceEquals(i1, i3); // false
+            var i6_true = ReferenceEquals(i1, i1); // true
+            #endregion
+            
+            //Object_.Main();
+            
             Console.WriteLine("Hello World!");
             Console.ReadLine();
             //SafeHandle

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace C__NET5
+﻿namespace C__NET5
 {
     public sealed class ImmutableClass
     {
@@ -12,16 +6,15 @@ namespace C__NET5
         {
             Value = value;
         }
-
+        
         public int Value { get; }
 
-        private bool Equals(ImmutableClass other)
-            => Value == other.Value;
+        private bool Equals(ImmutableClass other) => Value == other.Value;
 
+        //  можно вызвать equals object-а, хоть и виртуальный
         public override bool Equals(object obj)
             => ReferenceEquals(this, obj) || obj is ImmutableClass other && Equals(other);
 
-        public override int GetHashCode()
-            => Value.GetHashCode();
+        public override int GetHashCode() => Value.GetHashCode();
     }
 }

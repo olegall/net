@@ -89,9 +89,6 @@ namespace C__NET5.keywords
                 return ref numbers;
             }
             
-
-
-
             //ref int FindFirst7()
             //{
             //    int numbers = 0;
@@ -103,5 +100,21 @@ namespace C__NET5.keywords
             //ref int element2;
             element = 1;
         }
+
+        #region Swap SO
+        public void Swap<T>(ref T x, ref T y)
+        {
+            T t = x;
+            x = y;
+            y = t;
+        }
+        
+        public void Swap<T>(T x, T y)
+        {
+            T t = x;
+            x = y;
+            y = t;
+        }
+        #endregion
     }
 }
