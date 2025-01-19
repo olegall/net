@@ -146,15 +146,7 @@ namespace C__NET5
         }
 
         static void Main()
-        {
-            Console.WriteLine("name"); // зависает
-        }
-
-        // почему основной метод async Task?
-        // почему точка входа - статическая?
-        static async Task Main_(string[] args) 
-        {
-            PrintName("xxx");
+        {   
             var ref_ = new Ref();
             #region
             var foo = new Ref.Foo();
@@ -165,7 +157,7 @@ namespace C__NET5
             foo = new Ref.Foo();
             ref_.Bar(foo);
             ref_.BarRef2(ref foo);
-            ref_.BarRef3(ref foo);
+            ref_.BarRef3(ref foo); // Name = null
             #endregion
             #region
             var testRef = new[] { "0", "1" };
@@ -174,6 +166,15 @@ namespace C__NET5
             ref_.Swap(test[0], test[1]); // не меняет
             #endregion
             ref_.Run();
+            Console.WriteLine("name"); // зависает
+        }
+
+        // почему основной метод async Task?
+        // почему точка входа - статическая?
+        static async Task Main_(string[] args) 
+        {
+            PrintName("xxx");
+
 
             #region by reference
             var contact = new Contact();

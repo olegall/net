@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace C__NET5.keywords
 {
+    // ref iunder the hood
     internal class Ref
     {
         public class Foo
         {
             public string Name { get; set; }
         }
-
+        #region
         public void Bar(Foo foo)
         {
             foo.Name = "1";
@@ -33,19 +31,65 @@ namespace C__NET5.keywords
         {
             foo.Name = "2";
         }
-        
         public void BarRef3(ref Foo foo)
         {
-            foo = new Foo(); // меняется ссылка, а не сам объект. состояние объекта сохраняется
-            foo.Name = "3";
+            foo = new Foo(); // в куче создаётся новый объект, ссылка теперь указывает на него
         }
+        #endregion
+
+        #region
+        void M(ref int refParameter) 
+        { 
+            refParameter += 42; 
+        }
+        //void M(ref string refParameter2) { refParameter2 += 42; } // нет ошибки string vs int
+        
+        void M(ref string refStr) 
+        { 
+            refStr += "_";
+        } 
+
+        void MNoRef(string refStr) 
+        { 
+            refStr += "_"; 
+        }
+
+        void M(Foo foo)
+        {
+            foo.Name += "_";    
+        }
+
+        void MRef(ref Foo foo)
+        {
+            foo.Name += "_";
+        }
+        #endregion
 
         public void Run()
         {
-            void Foo(ref int a)
-            {
-                a = 1;
-            }
+            int refParameter_ = 0; // изменится
+            M(ref refParameter_);
+
+            string refStr = "a"; // изменится
+            M(ref refStr); //M(ref "a"); // нельзя
+
+            // не изменится. возможно:
+            // передаётся копия а не ссылка;
+            // из-за особенностей строки - ссылочный/значимый тип
+            // строка - immutable
+            // передаётся ссылка по значению? pass reference by value vs reference by reference vs value by value vs value by reference
+            // https://stackoverflow.com/questions/1096449/c-sharp-string-reference-type
+            // https://stackoverflow.com/questions/31368068/impact-of-using-the-ref-keyword-for-string-parameters-in-methods-in-c
+            string noRefStr = "a";  
+            MNoRef(noRefStr);
+
+            Foo foo = new Foo { Name = "a" }; // изменится
+            M(foo);
+
+            Foo fooRef = new Foo { Name = "a" }; // изменится
+            MRef(ref fooRef);
+
+            int break_ = 0;
 
             //ref int Foo()
             ////ref int? Foo()
