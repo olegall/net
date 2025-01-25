@@ -30,7 +30,7 @@ namespace C__NET5
         #region async await
         private static string str = "initial";
         static AsyncAwait asyncAwait = new AsyncAwait();
-        static Common common = new Common();
+
         static Cast cast = new Cast();
 
         async static Task<string> Delay()
@@ -146,7 +146,12 @@ namespace C__NET5
         }
 
         static void Main()
-        {   
+        {
+            Common common = new Common();
+            common.Run();
+            common.Run3();
+            common.Run4();
+
             var ref_ = new Ref();
             #region
             var foo = new Ref.Foo();
@@ -174,7 +179,6 @@ namespace C__NET5
         static async Task Main_(string[] args) 
         {
             PrintName("xxx");
-
 
             #region by reference
             var contact = new Contact();
@@ -253,11 +257,6 @@ namespace C__NET5
             #endregion
 
             new Exceptions();
-
-            #region common
-            common.Run();
-            common.Run3();
-            #endregion
 
             OOP.Main_();
             Finalize_.Demo.Main1();
