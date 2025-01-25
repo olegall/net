@@ -152,6 +152,8 @@ namespace C__NET5
             common.Run3();
             common.Run4();
 
+            new VirtualOverride().Run();
+
             var ref_ = new Ref();
             #region
             var foo = new Ref.Foo();

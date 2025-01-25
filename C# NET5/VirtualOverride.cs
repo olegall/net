@@ -2,6 +2,20 @@
 {
     internal class VirtualOverride
     {
+        class A0 
+        {
+            public virtual void Foo() 
+            { 
+            }
+        }
+        
+        class B0 : A0
+        {
+            public override void Foo() 
+            { 
+            }
+        }
+
         #region virtual new new
         public class A1
         {
@@ -80,6 +94,19 @@
         class B3 : A3
         {
             void Foo() { }
+        }
+
+        public void Run() 
+        {
+            var a0 = new A0();
+            // в дизайн тайме VS различает virtual и override
+            a0.Foo(); // F12 - перейдёт на virtual
+            
+            //B0 b0 = (B0)a0;
+            //b0.Foo(); // F12 - перейдёт на override
+
+            a0 = new B0(); // когда-то в коде в рантайме может потребоваться поменять ссылку на другой объект. вызовется override метод сам собой
+            a0.Foo(); // в дизайн тайме VS не понимает, что ссылка теперь указывает на BO. F12 - перейдёт на override. в рантайме - virtual
         }
     }
 }
