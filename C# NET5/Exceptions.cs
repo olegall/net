@@ -1,123 +1,181 @@
 ﻿using System;
+using System.Threading.Tasks;
 
-namespace C__NET5
+namespace C__NET5;
+
+internal class Exceptions
 {
-    internal class Exceptions
+    internal Exceptions()
     {
-        internal Exceptions()
+        //Foo1();
+        TryFinally();
+        //ProcessRequest(-1);
+        //Foo4();
+        //Foo6();
+        //Foo7();
+        //Foo8();
+    }
+
+    public int Foo1()
+    {
+        //throw new ArgumentNullException(); // аварийно завершится, никуда не попадёт, нет болка try
+
+        try
         {
-            Foo1();
-            Foo3();
+            // - Q м.б. что-то такое в Foo2, что НЕ приведёт к отработке finally?
+            // - A выброс исключения. Это другой, не связанный с данным finally стек исключений
+            Exception(); 
+            
+            // попадёт в catch того же типа или выше по иерархии
+            throw new ArgumentNullException("");
+            //throw new Exception();
+        }
+        catch (ArgumentNullException e) // от производного к общему исключению. иначе ошибка; в базовый catch не попадёт - и-е уже обработано
+        {
+            //var _0 = 0; var a1 = 1 / _0; // не попадёт в catch. нужен try/catch в этом скоупе. аварийно остановится
+
+            //throw; // rethrows existing exception. отправится обратно в try
+            //throw e; // resets the stack trace. аварийно остановится
+            //throw new Exception(); // resets the stack trace. аварийно остановится
+        }
+        catch (Exception e)
+        {
+            // попадёт в finally
+            throw;
+            //throw e;
+
+            return 2; // finally сработает, но отсюда вернётся
         }
 
-        public static int Foo1()
+        //catch (ArgumentNullException e) {} // ошибка - в любом месте цепочки - уже есть такой блок
+
+        // - Q можно в catch - освободить ресурсы и т.д.?
+        // - A нет - ПО аварийно остановится. finally - гарантия, что код в нём будет выполнен или при благоприятном исходе (try) или при исключении (catch). ПО продолжит работу
+        // без finally - аварийно остановится, если был выброс исключения
+        finally // - когда явно выброшено исключение
         {
-            var a = 0;
-            //throw new ArgumentNullException();
-            try 
-            {
-                //Foo2(); // м.б. что-то такое в Foo2, что НЕ приведёт к отработке finally?
-                a = 1;
-                throw new ArgumentNullException();
-                //throw new Exception();
-            }
-            //catch (ArgumentNullException)
-
-            catch (ArgumentNullException e) // от производного к общему исключению. иначе ошибка
-            {
-                //var zero = 0; var a1 = 1 / zero; // не попадёт в catch
-                //throw new Exception(); // resets the stack trace
-                //throw; // rethrows existing exception
-                //throw e; // resets the stack trace
-
-                // видимо в другой catch попасть уже невозможно, срабатывает только 1 catch
-            }
-
-            //catch (Exception e)
-            //{
-            //    a = 2;
-            //    //throw;
-            //    //throw e;
-            //    return 2; // finally сработает, но отсюда вернётся
-            //}
-
-            //catch (ArgumentNullException e) {}
-            // зачем нужен finally, если всё можно сделать в catch - освободить ресурсы и т.д.
-            // без finally программа аварийно не остановится
-            // finally - гарантия, что код в нём будет выполнен или при благоприятном исходе (try) или при исключении (catch)
-            finally
-            {
-                a = 3;
-                //return 2; нельзя
-            }
-
-            return a;
+            //return 2; return в finally нельзя. должен по любому выполниться код
         }
 
-        //private static int Foo2()
-        //{
-        //    throw new Exception("foo2"); // почему без return<int> работает?
-        //}
+        return 0;
+    }
 
-        private static int Foo2() 
+    //private static int Foo2()
+    //{
+    //    throw new Exception("foo2"); // почему без return<int> работает?
+    //}
+
+    private void Exception() 
+    {
+        throw new Exception("exc"); // сработает соотв catch в вызывающем коде, finally не сработает
+    }
+
+    public async Task TryFinally()
+    //public void TryFinally()
+    {
+        try
         {
-            try
-            {
-                throw new Exception("Foo2");
-            }
-            catch (Exception e)
-            {
+            var a1 = 0;
+            // без catch в finally: void TryFinally - не зайдёт; async Task TryFinally - зайдёт
+            // - Q зачем тогда нужен try/finally, раз в finally не заходит при прямом выбросе исключения?
+            // - A propagation of an exception out of the try block - microsoft
+            throw new Exception();
+            //Exception();
 
-            }
-            finally
-            {
-            }
-
-            return 0;
+            //ProcessAsync(); // - catch + finally () - void TryFinally
+            await ProcessAsync(); // + catch + finally - async Task TryFinally
         }
+        catch (Exception e)
+        {
+        }
+        finally
+        {
+        }
+    }
 
-        public static void Foo3()
+    // упростил. https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/exception-handling-statements
+    private async Task ProcessAsync() => // finally +, catch - эксепшн - в другом потоке (задаче)
+    //private void ProcessAsync() => // finally -
+        throw new ArgumentOutOfRangeException();
+
+    #region можно не рассматривать - есть эквивалентный пример TryFinally
+    //public async Task ProcessRequest(int itemId)
+    //{
+    //    var Busy = true;
+
+    //    try
+    //    {
+    //        await ProcessAsync(itemId);
+    //    }
+    //    catch (Exception e)/* when (e is not OperationCanceledException)*/
+    //    {
+    //        //LogError(e, $"Failed to process request for item ID {itemId}.");
+    //        throw;
+    //    }
+    //    finally
+    //    {
+    //        Busy = false;
+    //    }
+
+    //}
+    
+    //private static async Task<int> ProcessAsync(int input)
+    //{
+    //    if (input < 0)
+    //    {
+    //        throw new ArgumentOutOfRangeException(nameof(input), "Input must be non-negative.");
+    //    }
+
+    //    await Task.Delay(500);
+    //    return input;
+    //}
+    #endregion
+
+    public void Foo4()
+    {
+        try
         {
-            try
-            {
-                var zero = 0;
-                //var a1 = 1 / zero; // без catch в finally не зайдёт
-                //throw new Exception(); // без catch в finally не зайдёт
-            }
-            //catch (Exception e)
-            //{
-            //}
-            finally // без finally пришлось бы освобождать ресурсы и в try, и в catch, а сработал бы только 1 блок. 1. Где-то освобождение ресурсов лишнее, 2. Дублирование кода
-            {
-            }
+            var _0 = 0; var a1 = 1 / _0;
+            // vs - эквивалентно? что происходит на уровне кода, CLR?
+            throw new DivideByZeroException();
         }
-        
-        public static void Foo4()
+        catch (Exception e) // попадёт
         {
-            try
-            {
-                var zero = 0;
-                
-                var a1 = 1 / zero;
-                // vs - эквивалентно? что происходит на уровне кода, CLR?
-                throw new DivideByZeroException();
-            }
-            catch (Exception e)
-            {
-            }
         }
-        
-        public static void Foo5()
+    }
+    
+    public void Foo6()
+    {
+        try
         {
-            try
-            {
-            }
-            catch (Exception e)
-            {   // различия
-                throw;
-                throw e;
-                throw new Exception();
-            }
+            throw new Exception();
+        }
+        catch (ArgumentNullException e) // не попадёт - более узкая воронка
+        {
+        }
+    }
+    
+    public void Foo7()
+    {
+        try
+        {
+            //throw new Exception(); // попадёт в catch
+            new Exception(); // не выбросили, просто объявили объект исключения. не попадёт в catch
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    public void Foo8()
+    {
+        try
+        {
+            //var a1 = 0; // с этой и бех этой строки попадёт в finally
+            return; // попадёт в finally
+        }
+        finally
+        {
         }
     }
 }
