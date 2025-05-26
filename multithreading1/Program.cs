@@ -49,22 +49,35 @@ void Write2()
     }
 }
 
+void Write()
+{
+    lock (obj)
+    {
+        Thread.Sleep(10);
+        arr[0] = Thread.CurrentThread.ManagedThreadId;
+        Thread.Sleep(10);
+        arr[1] = Thread.CurrentThread.ManagedThreadId;
+    }
+}
+
 //var t1 = new Thread(Write1);
 //var t2 = new Thread(Write2);
 //t1.Start();
-//t1.Start(); // 2 раза подряд Start нельзя
-for (int i = 0; i < 100; i++)
+//t1.Start(); // TODO 2 раза подряд Start нельзя - уже запущен
+for (int i = 0; i < 20; i++)
 {
-    new Thread(Write1).Start(); new Thread(Write2).Start();
-    //Write1(); Write2();
+    new Thread(Write).Start();
+    new Thread(Write).Start();
+    //Write1(); // TODO под главном потоком с/без lock
+    //Write2();
     if (!(arr[0] == 1 && arr[1] == 2) || !(arr[0] == 3 && arr[1] == 4) && arr[0] != 0 && arr[1] != 0) // TODO попадает с нарушением условия - главный поток показывает, новый поток ещё не записал
     {
         //Console.Write("***** " + a1[0] + " " + a1[1] + " *****" + "\n");
     }
     //Console.Write(arr[0]+" "+arr[1] + " " + arr[2] + " " + arr[3] + " " + arr[4] + " " + arr[5] + " " + arr[6] + " " + arr[7] + " " + arr[8] + " " + arr[9] + "\n");
-    Console.Write(arr[0] + " " + arr[1] + "\n");
+    Thread.Sleep(100); // без паузы - хоть и lock - разнобой. Console.Write м. сработать быстрее записи актуальных данных потоком
+    Console.Write(arr[0] + " " + arr[1] + "\n"); // без lock - разнобой. 
     //Debug.WriteLine("");
-    //Thread.Sleep(100);
 }
 
 Console.WriteLine();
