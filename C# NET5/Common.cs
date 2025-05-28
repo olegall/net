@@ -88,9 +88,8 @@ namespace C__NET5
                 a3.ToList().ForEach(x => x = 0); // не изменит
                 a4.ToList().ForEach(x => x = 0); // не изменит, хоть и nullable
 
-                items.ForEach(x => x.Name += "_"); // изменит - ссылочный тип. TODO т.к. .ForEach возвр List - эквивалент IEnumerable.ToList()
-                var a5 = items.Select(x => { x.Name += "__"; return x; }); // не изменит. lazy
-                a5.ToArray(); // изменит
+                items.ForEach(x => x.Name += "_"); // изменит - ссылочный тип. т.к. .ForEach возвр List - эквивалент IEnumerable.ToList() нет lazy
+                var a5 = items.Select(x => { x.Name += "__"; return x; })/*.ToArray()*/; // без ToArray не изменит. lazy
             }
         }
 

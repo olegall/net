@@ -9,6 +9,7 @@
         
         public int Value { get; }
 
+        // почему нет предупреждения? в классе Object есть Equals. не указали override, new
         private bool Equals(ImmutableClass other) => Value == other.Value;
 
         //  можно вызвать equals object-а, хоть и виртуальный
