@@ -7,7 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C# NET5", "C# NET5.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Errors", "..\..\C# Errors\Errors\Errors.csproj", "{147E412B-4AF8-4396-873E-487AF7C06752}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "multithreading1", "..\multithreading1\multithreading1.csproj", "{6C76ABE5-4300-42ED-8493-A66548AFB880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "multithreading1", "..\multithreading1\multithreading1.csproj", "{6C76ABE5-4300-42ED-8493-A66548AFB880}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keywords", "keywords", "{265F284F-DE52-4C37-96C3-E0CC0A3BA80C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "volatile1", "..\volatile1\volatile1.csproj", "{DC646570-E8EE-42F1-B652-751BE3D30C79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interlocked", "..\interlocked\interlocked.csproj", "{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "multithreading", "multithreading", "{A88B017A-892E-446D-8E68-2517C348E7EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,21 @@ Global
 		{6C76ABE5-4300-42ED-8493-A66548AFB880}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C76ABE5-4300-42ED-8493-A66548AFB880}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C76ABE5-4300-42ED-8493-A66548AFB880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC646570-E8EE-42F1-B652-751BE3D30C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC646570-E8EE-42F1-B652-751BE3D30C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC646570-E8EE-42F1-B652-751BE3D30C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC646570-E8EE-42F1-B652-751BE3D30C79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC646570-E8EE-42F1-B652-751BE3D30C79} = {265F284F-DE52-4C37-96C3-E0CC0A3BA80C}
+		{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23} = {A88B017A-892E-446D-8E68-2517C348E7EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8E5A937-1DBC-49B1-9EF2-5E859F1113B7}
