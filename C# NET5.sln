@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C# NET5", "C# NET5.csproj", "{D20C235A-274F-473F-AA8F-03E172547C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C# NET5", "C# NET5/C# NET5.csproj", "{D20C235A-274F-473F-AA8F-03E172547C94}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "multithreading1", "..\multithreading1\multithreading1.csproj", "{6C76ABE5-4300-42ED-8493-A66548AFB880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "multithreading1", "multithreading1\multithreading1.csproj", "{6C76ABE5-4300-42ED-8493-A66548AFB880}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keywords", "keywords", "{265F284F-DE52-4C37-96C3-E0CC0A3BA80C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keywords", "C# NET5/keywords", "{265F284F-DE52-4C37-96C3-E0CC0A3BA80C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "volatile1", "..\volatile1\volatile1.csproj", "{DC646570-E8EE-42F1-B652-751BE3D30C79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "volatile1", "volatile1\volatile1.csproj", "{DC646570-E8EE-42F1-B652-751BE3D30C79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interlocked", "..\interlocked\interlocked.csproj", "{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interlocked", "interlocked\interlocked.csproj", "{622D5D0B-CA92-416E-BB31-5E1B0D0E5C23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "multithreading", "multithreading", "{A88B017A-892E-446D-8E68-2517C348E7EC}"
 EndProject
