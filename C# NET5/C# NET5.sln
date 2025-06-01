@@ -5,8 +5,6 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C# NET5", "C# NET5.csproj", "{D20C235A-274F-473F-AA8F-03E172547C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Errors", "..\..\C# Errors\Errors\Errors.csproj", "{147E412B-4AF8-4396-873E-487AF7C06752}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "multithreading1", "..\multithreading1\multithreading1.csproj", "{6C76ABE5-4300-42ED-8493-A66548AFB880}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keywords", "keywords", "{265F284F-DE52-4C37-96C3-E0CC0A3BA80C}"
