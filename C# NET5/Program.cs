@@ -138,11 +138,24 @@ internal class Program
 
     static async Task Main()
     {
-        #region LINQ
-        var linq = new LINQ();
-        linq.Foo1();
+        #region #virtual #override
+        double r = 3.0, h = 5.0;
+
+        //new Square(r).Area();
+        //new Circle(r).Area();
+        //new Sphere(r).Area();
+        //new Cylinder(r, h).Area();
+
+        //Shape s = new Shape(r, h);
+        //s.Area(); // используем именно эту переменную во всей программе. вызовется у Shape
+        //s = new Square(r);
+        //s.Area(); // где-то в рантайме специализировали. вызовется у Square
+        // итог: работает полиморфизм. не надо создавать новую переменную, плодить разные, но похожие методы
         #endregion
-        #region async await
+
+        new LINQ();
+
+        #region #async #await
         var asyncAwait = new AsyncAwait();
         await asyncAwait.Main1();
         //await ExecuteOperation();
@@ -261,16 +274,7 @@ internal class Program
 
         new Exceptions();
 
-        #region virtual
-        double r = 3.0, h = 5.0;
-        Shape c = new Circle(r);
-        Shape s = new Sphere(r);
-        Shape l = new Cylinder(r, h);
-        // Display results:
-        var a1 = c.Area();
-        var a2 = s.Area();
-        var a3 = l.Area();
-        #endregion
+
 
         new Cast().Run();
 
