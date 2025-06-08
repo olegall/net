@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace C__NET5;
+﻿namespace C__NET5;
 
 public class Foo
 {
@@ -46,7 +44,7 @@ public class Foo2
 
 //        // перекрыть (override) Equals, чтобы сравнить по значению (изначальный - по ссылке)
 
-//        public static void Main_() // TODO если Main - проект не запускается. перекликается с Main Program.cs
+//        public static void Main_() // если Main - проект не запускается. перекликается с Main Program.cs
 //        {
 //            var a1 = new object().Equals(new Foo { X = 1 }, new Foo { X = 1 });
 //            var a2 = new object().Equals(new Foo { X = 1 }, new Foo { X = 2 });
