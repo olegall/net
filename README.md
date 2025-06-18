@@ -6,6 +6,9 @@
 /keywords - ключевые слова<br>
 /metaint - примеры с сайта metanit.com<br>
 /microsoft - примеры с learn.microsoft.com<br><br>
-/problembbok.net - примеры из книги ProblemBook
+/problembook.net - примеры из книги ProblemBook
+
+поиск по комментариям: тильда ~
+поиск по тегу: #[тег]. пример: #generic
 
 Удачи в прогрессе в C#!

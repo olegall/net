@@ -47,9 +47,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ex9", "interview\ex9\ex9.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ex1", "interview\ex1\ex1.csproj", "{7D840EE9-2BE3-4930-8BA3-35E13E7C2225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "middle", "metanit\middle\middle.csproj", "{A4F91A43-A0D8-4608-BAC1-3BBDD69FE66F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "middle", "metanit\middle\middle.csproj", "{A4F91A43-A0D8-4608-BAC1-3BBDD69FE66F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "problembook.net", "problembook.net\problembook.net.csproj", "{0D6DCDC9-E4D0-46D5-ABBE-89B14ED53505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "problembook.net", "problembook.net\problembook.net.csproj", "{0D6DCDC9-E4D0-46D5-ABBE-89B14ED53505}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{6C855697-DED5-4948-8C9A-C07A9122AD81}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stringEquality", "stringEquality\stringEquality.csproj", "{84530C3F-46B8-4C69-9EB3-529858B60858}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "strings", "strings\strings.csproj", "{C595B2B4-E111-4F94-A00B-69918108F7F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +138,14 @@ Global
 		{0D6DCDC9-E4D0-46D5-ABBE-89B14ED53505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D6DCDC9-E4D0-46D5-ABBE-89B14ED53505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D6DCDC9-E4D0-46D5-ABBE-89B14ED53505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84530C3F-46B8-4C69-9EB3-529858B60858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84530C3F-46B8-4C69-9EB3-529858B60858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84530C3F-46B8-4C69-9EB3-529858B60858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84530C3F-46B8-4C69-9EB3-529858B60858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C595B2B4-E111-4F94-A00B-69918108F7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C595B2B4-E111-4F94-A00B-69918108F7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C595B2B4-E111-4F94-A00B-69918108F7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C595B2B4-E111-4F94-A00B-69918108F7F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +167,7 @@ Global
 		{A888A789-5AE2-4993-83E8-ED20DDB447D2} = {CF08AD90-9D19-4E76-89BC-692FD53E5BE7}
 		{7D840EE9-2BE3-4930-8BA3-35E13E7C2225} = {CF08AD90-9D19-4E76-89BC-692FD53E5BE7}
 		{A4F91A43-A0D8-4608-BAC1-3BBDD69FE66F} = {8C7C28D1-EE0B-429B-8F19-B62C43A220A4}
+		{84530C3F-46B8-4C69-9EB3-529858B60858} = {5B8E0943-E177-40AB-BCD9-D1475906363A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8E5A937-1DBC-49B1-9EF2-5E859F1113B7}

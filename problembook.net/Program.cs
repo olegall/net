@@ -203,17 +203,21 @@
             }
         }
 
-        public struct Foo8
+
+        public struct Struct1
+        //public class Struct1
         {
-            public int Value;
+            public int value;
             public void Change(int newValue)
             {
-                Value = newValue;
+                value = newValue;
             }
         }
+
         public class Bar5
         {
-            public Foo8 Foo8 { get; set; }
+            public Struct1 Struct1 { get; set; } // 0 для структуры / 5 для класса
+            //public Struct1 Struct1; // всегда 5 для структуры / класса
         }
 
         public struct Foo9

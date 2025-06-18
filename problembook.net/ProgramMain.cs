@@ -171,53 +171,64 @@ namespace problembook.net
             bar += foo;
             Console.WriteLine(bar.GetType()); // System.Int32 из-за +?
 
-
-            Console.WriteLine("|||||| Значимые типы ||||||");
-            Console.WriteLine("1. Что выведет следующий код?");
+            Console.WriteLine("***** Значимые типы *****");
+            Console.WriteLine("1. Что выведет следующий код?"); // TODO п2
             var foo7 = new Foo7();
-            Console.WriteLine(foo7);
-            object bar2 = foo7;
-            object qux = foo7;
+            Console.WriteLine(foo7); // Foo
+            object bar2 = foo7; // каждый раз наводишь в дебаге - разное значение
+            Console.WriteLine(bar2); // Foo
             object baz = bar;
-            Console.WriteLine(baz);
-            Console.WriteLine(bar2);
-            Console.WriteLine(baz);
-            Console.WriteLine(qux);
+            Console.WriteLine(baz); // 2
 
             Console.WriteLine("2. Что выведет следующий код?");
-            var bar5 = new Bar5 { Foo8 = new Foo8() };
-            bar5.Foo8.Change(5);
-            Console.WriteLine(bar5.Foo8.Value);
+            var bar5 = new Bar5
+            {
+                Struct1 = new Struct1()
+            };
+            bar5.Struct1.Change(5);
+            Console.WriteLine(bar5.Struct1.value);
 
-            Console.WriteLine("3. Что выведет следующий код?");
+            Console.WriteLine("3. Что выведет следующий код?"); // https://stackoverflow.com/questions/31591238/strange-behavior-of-enumerator-movenext
             var x2 = new
             {
                 Items = new List<int> { 1, 2, 3 }.GetEnumerator()
             };
+            //while (x2.Items.MoveNext()) Console.WriteLine(x2.Items.Current); // 0-ли, зацикливается
 
-            //while (x2.Items.MoveNext())
-            //    Console.WriteLine(x2.Items.Current);
-
-            Console.WriteLine("4. Что выведет следующий код?");
+            Console.WriteLine("4. Что выведет следующий код?"); // TODO п2
             Console.WriteLine(Marshal.SizeOf(typeof(Foo9)));
             //Console.WriteLine(Marshal.SizeOf(typeof(Bar6)));
             //Console.WriteLine(Marshal.SizeOf(typeof(Int32)));
 
 
-            Console.WriteLine("|||||| Строки ||||||");
+            Console.WriteLine("***** Строки *****"); // TODO п2 ещё задачи из книги
             Console.WriteLine("1. Что выведет следующий код?");
-            Console.WriteLine(1 + 2 + "A");
-            Console.WriteLine(1 + "A" + 2);
-            Console.WriteLine("A" + 1 + 2);
+            Console.WriteLine(1 + 2 + "A"); // 3A
+            Console.WriteLine(1 + "A" + 2); // 1A2 нет приоритета
+            Console.WriteLine("A" + 1 + 2); // A12 нет приоритета
 
             Console.WriteLine("2. Что выведет следующий код?");
-            Console.WriteLine(1 + 2 + 'A');
-            Console.WriteLine(1 + 'A' + 2);
-            Console.WriteLine('A' + 1 + 2);
+            Console.WriteLine(1 + 2 + 'A'); // 68 ASCII код символа (65)
+            Console.WriteLine(1 + 'A' + 2); // 68 
+            Console.WriteLine('A' + 1 + 2); // 68
 
             Console.WriteLine("3. Что выведет следующий код?");
+            try
+            {
+                Console.WriteLine(((string)null + null + null) == null); // false
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.GetType());
+            }
 
-            //string aaa = "hello world";
+            // 4.Являются ли следующие способы сравнения срок a и b без учёта регистра эквивалентными: // TODO п2
+            var a = "";
+            var b = "";
+            Console.WriteLine(string.Compare(a.ToUpper(), b.ToUpper()));
+            Console.WriteLine(string.Compare(a, b, StringComparison.OrdinalIgnoreCase));
+
+            //string aaa = "hello world"; // TODO п2
             //string bbb = aaa;
             //aaa = aaa.Replace("h", "a");
             //var aaa2 = aaa;
@@ -230,17 +241,21 @@ namespace problembook.net
             //var bbb2 = (object)aaa == (object)bbb;
 
             Console.WriteLine("9. Что выведет следующий код?");
-            var x3 = "AB";
-            var y = new StringBuilder().Append('A').Append('B').ToString();
-            var z = string.Intern(y);
-            Console.WriteLine(x3 == y);
-            Console.WriteLine(x3 == z);
-            Console.WriteLine((object)x3 == (object)y);
-            Console.WriteLine((object)x3 == (object)z);
+            var x_ = "AB";
+            var y_ = new StringBuilder().Append('A').Append('B').ToString();
+            var z_ = string.Intern(y_); // TODO
+            Console.WriteLine(x_ == y_); // true
+            Console.WriteLine(x_ == z_); // true
+            Console.WriteLine((object)x_ == (object)y_); // false
+            Console.WriteLine((object)x_ == (object)z_); // true
+            #region aleek
+            var a1 = object.ReferenceEquals(x_, y_); // false
+            x_ = y_;
+            var a2 = object.ReferenceEquals(x_, y_); // true
+            #endregion
 
-
-            Console.WriteLine("|||||| Многопоточность ||||||");
-            Console.WriteLine("1. Что выведет следущий код?");
+            Console.WriteLine("***** Многопоточность *****");
+            Console.WriteLine("1. Что выведет следущий код?"); // TODO
             var thread = new Thread(() => Console.WriteLine(Foo10));
             thread.Start();
             thread.Join();
