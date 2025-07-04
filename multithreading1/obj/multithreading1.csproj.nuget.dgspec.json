@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Работа\\C#\\C# NET5\\multithreading1\\multithreading1.csproj": {}
+    "D:\\work\\net5\\multithreading1\\multithreading1.csproj": {}
   },
   "projects": {
-    "D:\\Работа\\C#\\C# NET5\\multithreading1\\multithreading1.csproj": {
+    "D:\\work\\net5\\multithreading1\\multithreading1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Работа\\C#\\C# NET5\\multithreading1\\multithreading1.csproj",
+        "projectUniqueName": "D:\\work\\net5\\multithreading1\\multithreading1.csproj",
         "projectName": "multithreading1",
-        "projectPath": "D:\\Работа\\C#\\C# NET5\\multithreading1\\multithreading1.csproj",
-        "packagesPath": "C:\\Users\\aleyn\\.nuget\\packages\\",
-        "outputPath": "D:\\Работа\\C#\\C# NET5\\multithreading1\\obj\\",
+        "projectPath": "D:\\work\\net5\\multithreading1\\multithreading1.csproj",
+        "packagesPath": "C:\\Users\\parshin\\.nuget\\packages\\",
+        "outputPath": "D:\\work\\net5\\multithreading1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\aleyn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\parshin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,7 +25,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,11 +37,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -64,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
